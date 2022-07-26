@@ -18,4 +18,7 @@ export default {
 <style lang="scss">
 @import './assets/sass/style.scss';
 
+body{
+  background-color: #1E2D3B;
+}
 </style>
