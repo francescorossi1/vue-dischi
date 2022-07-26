@@ -14,14 +14,14 @@ export default {
   components: {
     MainHeader,
     MainContent
-}
+  }
 }
 </script>
 
 <style lang="scss">
 @import './assets/sass/style.scss';
 
-body{
+body {
   background-color: #1E2D3B;
 }
 </style>

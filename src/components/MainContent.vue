@@ -1,35 +1,33 @@
 <template>
     <div class="my-5">
         <div class="container">
-            <div class="album-list row row-cols-5 m-auto justify-content-center g-4">
-                <div class="col album-card" v-for="album in albums" :key="album.title">
-                    <figure class="p-3 h-100">
-                        <img :src="album.poster" :alt="album.title" class="img-fluid mb-3">
-                        <figcaption class="h-100 text-center">
-                            <h5 class="mb-3 text-white">{{ album.title.toUpperCase() }}</h5>
-                            <div class="text-muted">{{ album.author }}</div>
-                            <div class="text-muted">{{ album.year }}</div>
-                        </figcaption>
-                    </figure>
-                </div>
+            <div v-if="!isLoading" class="album-list row row-cols-5 m-auto justify-content-center g-4">
+                <AlbumCard v-for="album in albums" :key="album.title" :albumDetails="album" />
             </div>
+            <div class="text-center h2 text-white" v-else>Album in caricamento...</div>
         </div>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import AlbumCard from './AlbumCard'
 export default {
     name: "MainContent",
+    components: { AlbumCard },
     data() {
         return {
-            albums: []
+            albums: [],
+            isLoading: false
         }
     },
     created() {
+        this.isLoading = true;
         axios.get('https://flynn.boolean.careers/exercises/api/array/music').then((res) => {
-        this.albums = res.data.response
-    })}
+            this.albums = res.data.response
+            this.isLoading = false
+        })
+    }
 
 }
 </script>
