@@ -23,7 +23,7 @@ export default {
         }
     }, computed: {
         filteredAlbums() {
-            if (this.selectedOption === 'Default') return this.albums
+            if (!this.selectedOption) return this.albums
             else return this.albums.filter((album) => {
                 return album.genre === this.selectedOption
             })

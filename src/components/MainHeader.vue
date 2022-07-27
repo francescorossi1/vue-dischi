@@ -4,7 +4,7 @@
             <img src="../assets/img/spotify.png" alt="spotify logo">
             <div>
                 <select id="base-select" class="form-select" v-model="optionValue" @change="$emit('set-option', optionValue)">
-                    <option value="Default">Seleziona un genere</option>
+                    <option value="" selected>Seleziona un genere</option>
                     <option value="Rock">Rock</option>
                     <option value="Pop">Pop</option>
                     <option value="Jazz">Jazz</option>
