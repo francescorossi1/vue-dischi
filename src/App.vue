@@ -1,7 +1,7 @@
 <template>
   <div>
-    <MainHeader />
-    <MainContent />
+    <MainHeader @set-option="setSelectedOption"/>
+    <MainContent :selectedOption="selectedOption"/>
   </div>
 </template>
 
@@ -11,6 +11,16 @@ import MainContent from './components/MainContent.vue';
 
 export default {
   name: 'App',
+  data(){
+    return {
+      selectedOption: '',
+    }
+  },
+  methods: {
+    setSelectedOption(value){
+      this.selectedOption = value
+    }
+  },
   components: {
     MainHeader,
     MainContent

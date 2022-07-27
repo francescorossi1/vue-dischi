@@ -2,7 +2,7 @@
     <div class="my-5">
         <div class="container">
             <div v-if="!isLoading" class="album-list row row-cols-5 m-auto justify-content-center g-4">
-                <AlbumCard v-for="album in albums" :key="album.title" :albumDetails="album" />
+                <AlbumCard v-for="album in filteredAlbums" :key="album.title" :albumDetails="album" />
             </div>
             <div class="text-center h2 text-white" v-else>Album in caricamento...</div>
         </div>
@@ -15,10 +15,19 @@ import AlbumCard from './AlbumCard'
 export default {
     name: "MainContent",
     components: { AlbumCard },
+    props: { selectedOption: String },
     data() {
         return {
             albums: [],
-            isLoading: false
+            isLoading: false,
+        }
+    }, computed: {
+        filteredAlbums() {
+            if (this.selectedOption === 'Default') return this.albums
+            else return this.albums.filter((album) => {
+                return album.genre === this.selectedOption
+            })
+
         }
     },
     created() {
