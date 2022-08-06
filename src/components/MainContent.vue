@@ -19,6 +19,7 @@ export default {
     data() {
         return {
             albums: [],
+            genres: [],
             isLoading: false,
         }
     }, computed: {
@@ -29,12 +30,22 @@ export default {
             })
 
         }
+    }, methods: {
+        getGenre() {
+            this.albums.map((album) => {
+                if (!this.genres.includes(album.genre)) {
+                    this.genres.push(album.genre)
+                }
+            })
+        }
     },
     created() {
         this.isLoading = true;
         axios.get('https://flynn.boolean.careers/exercises/api/array/music').then((res) => {
-            this.albums = res.data.response
-            this.isLoading = false
+            this.albums = res.data.response;
+            this.isLoading = false;
+            this.getGenre()
+            this.$emit('get-data', this.genres)
         })
     }
 

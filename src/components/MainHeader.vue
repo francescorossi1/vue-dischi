@@ -3,12 +3,10 @@
         <nav class="nav px-4 d-flex justify-content-between align-items-center">
             <img src="../assets/img/spotify.png" alt="spotify logo">
             <div>
-                <select id="base-select" class="form-select" v-model="optionValue" @change="$emit('set-option', optionValue)">
+                <select id="base-select" class="form-select" v-model="optionValue"
+                    @change="$emit('set-option', optionValue)">
                     <option value="" selected>Seleziona un genere</option>
-                    <option value="Rock">Rock</option>
-                    <option value="Pop">Pop</option>
-                    <option value="Jazz">Jazz</option>
-                    <option value="Metal">Metal</option>
+                    <option v-for="(genre, i) in genresList" :key="i" :value="genre">{{ genre }}</option>
                 </select>
             </div>
         </nav>
@@ -18,11 +16,13 @@
 <script>
 export default {
     name: 'MainHeader',
-    data(){
+    data() {
         return {
             optionValue: ''
         }
-    }
+    }, props:
+        { genresList: Array }
+
 }
 </script>
 
@@ -31,12 +31,14 @@ export default {
 
 header {
     background-color: $primary_color;
-    .nav{
-    height: 70px;
-    img {
-        height: 50px;
-        width: 50px;
-    }
+
+    .nav {
+        height: 70px;
+
+        img {
+            height: 50px;
+            width: 50px;
+        }
     }
 }
 </style>

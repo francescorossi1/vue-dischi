@@ -1,7 +1,7 @@
 <template>
   <div>
-    <MainHeader @set-option="setSelectedOption"/>
-    <MainContent :selectedOption="selectedOption"/>
+    <MainHeader @set-option="setSelectedOption" :genres-list="genres" />
+    <MainContent :selectedOption="selectedOption" @get-data="getGenre" />
   </div>
 </template>
 
@@ -11,14 +11,18 @@ import MainContent from './components/MainContent.vue';
 
 export default {
   name: 'App',
-  data(){
+  data() {
     return {
       selectedOption: '',
+      genres: []
     }
   },
   methods: {
-    setSelectedOption(value){
+    setSelectedOption(value) {
       this.selectedOption = value
+    }, getGenre(value) {
+      this.genres = value
+      console.log(value)
     }
   },
   components: {
