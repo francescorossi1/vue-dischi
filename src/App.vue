@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MainHeader @set-option="setSelectedOption" :genres-list="genres" />
+    <MainHeader @send-option="setSelectedOption" :genres-list="genres" />
     <MainContent :selectedOption="selectedOption" @get-data="getGenre" />
   </div>
 </template>

@@ -3,26 +3,23 @@
         <nav class="nav px-4 d-flex justify-content-between align-items-center">
             <img src="../assets/img/spotify.png" alt="spotify logo">
             <div>
-                <select id="base-select" class="form-select" v-model="optionValue"
-                    @change="$emit('set-option', optionValue)">
-                    <option value="" selected>Seleziona un genere</option>
-                    <option v-for="(genre, i) in genresList" :key="i" :value="genre">{{ genre }}</option>
-                </select>
+                <BaseSelect @set-option="sendOption" :genres-list="genresList" />
             </div>
         </nav>
     </header>
 </template>
 
 <script>
+import BaseSelect from './BaseSelect.vue'
 export default {
-    name: 'MainHeader',
-    data() {
-        return {
-            optionValue: ''
+    name: "MainHeader",
+    props: { genresList: Array },
+    components: { BaseSelect },
+    methods: {
+        sendOption(value){
+            this.$emit('send-option', value)
         }
-    }, props:
-        { genresList: Array }
-
+    }
 }
 </script>
 
